@@ -5,5 +5,5 @@
 @endsection
 
 @section('content')
-    Contenido de la página principal
+    Contenido de la página principal (test commit no. 2)
 @endsection
