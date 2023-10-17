@@ -16,10 +16,12 @@ class LoginController extends Controller
         ]);
         // Devuelve mensaje de error desde donde fué enviado el request, con el mensaje dentro de with (lo guarda en una variable de sesión)
         // Se puede acceder desde las vistas con @sesion('message') en este caso
-        if(!auth()->attempt($request->only('email', 'password'))) {
+        if(!auth()->attempt($request->only('email', 'password'), $request->remember)) {
             return back()->with('message', 'Credenciales incorrectas');
         }
         // Si pasa la validación y la autenticación me redirecciona al muro
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index', [
+            'user' => auth()->user()->username,
+        ]);
     }
 }

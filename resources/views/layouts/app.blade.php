@@ -20,11 +20,37 @@
                 <h1 class="text-3xl font-black">
                     DevStagram
                 </h1>
-                <nav class="flex gap-2 items-center">
-                    <a href="/" class="font-bold uppercase text-gray-600">Home</a>
-                    <a href="/login" class="font-bold uppercase text-gray-600">Login</a>
-                    <a href="{{ route('register') }}" class="font-bold uppercase text-gray-600">Crear Cuenta</a>
-                </nav>    
+                {{-- Si existe un usuario autenticado --}}
+                {{-- @if(auth()->user())
+                    <p>AUTH</p>
+                @else
+                    <p>NO AUTH</p>
+                @endif --}}
+                {{-- Verificación de autenticación ocn directiva @auth y @guest --}}
+                @auth
+                    <nav class="flex gap-2 items-center">
+                        <a href="/{{ auth()->user()->username }}" class="font-bold text-gray-600">
+                            Hola 
+                            <span class="font-normal">
+                                {{ auth()->user()->name}}
+                            </span>
+                        </a>
+                        <a href="/" class="font-bold uppercase text-gray-600">Home</a>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="font-bold uppercase text-gray-600">
+                                Cerrar sesión
+                            </button>    
+                        </form>
+                    </nav>
+                @endauth
+                @guest
+                    <nav class="flex gap-2 items-center">
+                        <a href="/" class="font-bold uppercase text-gray-600">Home</a>
+                        <a href="/login" class="font-bold uppercase text-gray-600">Login</a>
+                        <a href="{{ route('register') }}" class="font-bold uppercase text-gray-600">Crear Cuenta</a>
+                    </nav>    
+                @endguest
             </div>
         </header>
         <main class="container mx-auto mt-10">
