@@ -43,4 +43,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function posts() {
+        return $this->hasMany(Post::class); // Relación One to Many Eloquent
+        /* 
+        Si rompemos las convenciones de nombres de Laravel: 
+        Por ejemplo si la tabla posts se llama publicaciones y en vez de tener user_id tenemos autor_id
+        */
+        // return $this->hasMany(Post::class, 'autor_id'); 
+    }
 }

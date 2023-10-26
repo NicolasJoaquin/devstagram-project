@@ -40,6 +40,15 @@ class PostController extends Controller
         $post->user_id = auth()->user()->id;
         $post->save(); 
         */
+        // Otra forma (con las relaciones de Eloquent)
+        /*
+        $request->user()->posts()->create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'image' => $request->image,
+            'user_id' => auth()->user()->id,
+        ]);
+        */
         return redirect()->route('posts.index', [
             'user' => auth()->user()->username,
         ]);
