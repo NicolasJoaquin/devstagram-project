@@ -10,13 +10,13 @@
 
 @section('content')
     <div class="md:flex md:items-center">
-        <div class="md:w-1/2 md:m-5">
+        <div class="md:w-1/2 m-5">
             <form action="{{ route('images.store') }}" method="POST" enctype="multipart/form-data" id="dropzone" class="dropzone border-dashed border-2 w-full h-96 rounded flex flex-col justify-center items-center">
-
+                @csrf
             </form>
         </div>    
         <div class="md:w-1/2 p-10 bg-white rounded-lg shadow-xl mt-10 md:mt-0 md:m-5">
-            <form action="{{ route('register') }}" method="POST">
+            <form action="{{ route('posts.store') }}" method="POST">
                 {{-- Directiva que me pega un input hidden con un token para evitar ataques CSR --}}
                 @csrf
                 <div class="mb-5">
@@ -49,6 +49,16 @@
                         </p>
                     @enderror
                 </div>
+
+                <div class="mb-5">
+                    <input type="hidden" name="image" id="image" value="{{ old('image') }}" />
+                    @error('image') 
+                        <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">
+                            {{ $message }}
+                        </p>
+                    @enderror
+                </div>
+
                 <input
                     type="submit"
                     value="Crear publicación"
