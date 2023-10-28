@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('likes', function (Blueprint $table) {
             $table->id();
-            /* Armo foreign keys para relación N:N */
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('post_id')->constrained()->onDelete('cascade');
-            $table->string('comment');
+
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('likes');
     }
 };

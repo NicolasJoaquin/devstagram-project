@@ -20,4 +20,10 @@ class Post extends Model
     public function comments() {
         return $this->hasMany(Comment::class)->select(['comment', 'user_id', 'created_at']);
     }
+    public function likes() {
+        return $this->hasMany(Like::class);
+    }
+    public function checkLike(User $user) {
+        return $this->likes->contains('user_id', $user->id);
+    }
 }
