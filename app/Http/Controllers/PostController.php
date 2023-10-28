@@ -12,8 +12,12 @@ class PostController extends Controller
         $this->middleware('auth'); // Cada vez que se llama a una functión autentica al usuario primero
     }
     public function index(User $user) { // Recibe un modelo porque en el ruteo estoy usando una variable (/{user:username})
+        // Usando el usuario que viene por parámetro para consultar sus posts a través del modelo (Route Model Binding)
+        $posts = Post::where('user_id', $user->id)->paginate(20);
+        // dd($posts);
         return view('layouts.dashboard', [
-            'user' => $user,
+            'user' => $user, // Puedo mandar sólo el usuario que dentro tiene los posts, pero ni puedo hacer $user->posts->link() porque este objeto no es paginable
+            'posts' => $posts,
         ]);
     }
     public function create() { 
@@ -51,6 +55,12 @@ class PostController extends Controller
         */
         return redirect()->route('posts.index', [
             'user' => auth()->user()->username,
+        ]);
+    }
+    public function show(User $user, Post $post) { // Van en este orden porque en el ruteo está primero el usuario y después el post
+        return view('posts.show', [
+            'user' => $user,
+            'post' => $post,
         ]);
     }
 }
