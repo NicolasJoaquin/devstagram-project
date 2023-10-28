@@ -59,7 +59,7 @@
                 @guest
                     <nav class="flex gap-2 items-center">
                         <a href="/" class="font-bold uppercase text-gray-600">Home</a>
-                        <a href="/login" class="font-bold uppercase text-gray-600">Login</a>
+                        <a href="{{ route('login') }}" class="font-bold uppercase text-gray-600">Login</a>
                         <a href="{{ route('register') }}" class="font-bold uppercase text-gray-600">Crear Cuenta</a>
                     </nav>    
                 @endguest

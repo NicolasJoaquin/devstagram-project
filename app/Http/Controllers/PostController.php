@@ -9,7 +9,11 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     public function __construct() {
-        $this->middleware('auth'); // Cada vez que se llama a una functión autentica al usuario primero
+        /* 
+        Cada vez que se llama a una functión autentica al usuario primero
+        Se pueden excepcionar métodos de la autenticación
+        */
+        $this->middleware('auth')->except(['show', 'index']); 
     }
     public function index(User $user) { // Recibe un modelo porque en el ruteo estoy usando una variable (/{user:username})
         // Usando el usuario que viene por parámetro para consultar sus posts a través del modelo (Route Model Binding)
@@ -25,8 +29,8 @@ class PostController extends Controller
     }
     public function store(Request $request) { 
         $this->validate($request, [
-            'title' => ['required', 'min:1', 'max:255'],
-            'description' => ['required', 'min:1', 'max:1500'],
+            'title' => ['required', 'max:255'],
+            'description' => ['required', 'max:1500'],
             'image' => ['required'],
         ]);
         Post::create([

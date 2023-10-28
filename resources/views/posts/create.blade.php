@@ -49,7 +49,6 @@
                         </p>
                     @enderror
                 </div>
-
                 <div class="mb-5">
                     <input type="hidden" name="image" id="image" value="{{ old('image') }}" />
                     @error('image') 
@@ -58,7 +57,6 @@
                         </p>
                     @enderror
                 </div>
-
                 <input
                     type="submit"
                     value="Crear publicación"
