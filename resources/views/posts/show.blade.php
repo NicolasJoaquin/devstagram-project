@@ -12,7 +12,7 @@
                 <p>0 likes</p>
             </div>
             <div>
-                <p class="font-bold">{{ $user->name }}</p>
+                <a href="{{ route('posts.index', $user->username) }}" class="font-bold">{{ $user->name }}</a>
                 <p class="text-sm text-gray-500">
                     {{ $post->created_at->diffForHumans() /* Lo formatea implementando la API carbon */ }} 
                 </p>
@@ -20,6 +20,21 @@
                     {{ $post->description }}
                 </p>
             </div>
+            @auth
+                @if ($post->user_id === auth()->user()->id)
+                    <form action="{{ route('posts.destroy', $post) }}" method="POST">
+                        {{-- Method spoofing -> El método delete no está soportado por las actions del form
+                        Haciendo method spoofing se pueden utilizar otro tipo de peticiones como PUT/PATCH o DELETE --}}
+                        @method('DELETE') 
+                        @csrf
+                        <input 
+                            type="submit"
+                            value="Eliminar publicación"
+                            class="bg-red-500 hover:bg-red-600 p-2 rounded text-white font-bold mt-4 cursor-pointer"
+                        />
+                    </form>                
+                @endif
+            @endauth
         </div>
         <div class="md:w-1/2 p-5">
             <div class="rounded shadow bg-white p-5 mb-5">
