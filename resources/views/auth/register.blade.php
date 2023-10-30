@@ -69,7 +69,7 @@
                         id="password"
                         name="password"
                         type="password"
-                        placeholder="tuPassword"
+                        placeholder="**********"
                         class="border p-3 w-full rounded-lg @error('password') border-red-500 @enderror"
                     />
                     @error('password') 
