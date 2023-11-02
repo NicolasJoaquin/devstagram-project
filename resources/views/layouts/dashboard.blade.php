@@ -13,6 +13,7 @@
                     asset('/profiles') . "/" . $user->image : 
                     asset('/img/user.png') }}" 
                     alt="Imágen de usuario" 
+                    class="rounded-full border-2 shadow-xl"
                 />
             </div>
             <div class="md:w-8/12 lg:w-6/12 px-5 flex flex-col items-center md:justify-center md:items-start py-10 md:py-10">

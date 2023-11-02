@@ -84,7 +84,7 @@
                         id="password_confirmation"
                         name="password_confirmation"
                         type="password"
-                        placeholder="tuPassword"
+                        placeholder="**********"
                         class="border p-3 w-full rounded-lg @error('password_confirmation') border-red-500 @enderror"
                     />
                     @error('password_confirmation') 
