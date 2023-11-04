@@ -11,22 +11,16 @@
     @empty
         <p>No hay posts</p>
     @endforelse --}}
-    @if ($posts->count() > 0)
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            @foreach ($posts as $post)
-                <div>
-                    <a href="{{ route('posts.show', ['post' => $post, 'user' => $post->user]) }}">
-                        <img src="{{ asset('uploads') . '/' . $post->image }}" alt="Imagen del post {{ $post->title }}" class="rounded-xl shadow-lg">
-                    </a>
-                </div>
-            @endforeach
-        </div>
-        <div class="my-10">
-            {{ $posts->links('pagination::tailwind') }}
-        </div>
-    @else
-        <p class="text-gray-600 uppercase text-sm text-center font-bold">
-            Nadie ha publicado nada todavía
-        </p>
-    @endif
+    {{-- Ejemplo slots --}}
+    {{-- <x-post-list>
+        <x-slot:title>
+            <header>HEADER</header>
+        </x-slot:title>
+        <h1>Mostrando posts desde slots</h1>
+    </x-post-list> --}}
+    <x-post-list :posts="$posts">
+        <x-slot:without_posts>
+            No hay publicaciones para mostrar en tu feed
+        </x-slot:without_posts>
+    </x-post-list>
 @endsection
