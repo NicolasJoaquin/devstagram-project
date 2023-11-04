@@ -39,7 +39,7 @@
                 </p>
                 <p class="text-gray-800 text-sm mb-3 font-bold">
                     {{ $posts->count() }}
-                    <span class="font-normal">Posts</span>
+                    <span class="font-normal">Publicaciones</span>
                 </p>
                 @auth
                     @if ($user->id != auth()->user()->id)

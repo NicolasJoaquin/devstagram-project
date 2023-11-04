@@ -19,9 +19,9 @@
         @yield('content') --}}
         <header class="p-5 border-b bg-white shadow">
             <div class="container mx-auto flex justify-between items-center">
-                <h1 class="text-3xl font-black">
+                <a class="text-3xl font-black" href="{{ route('home') }}">
                     DevStagram
-                </h1>
+                </a>
                 {{-- Si existe un usuario autenticado --}}
                 {{-- @if(auth()->user())
                     <p>AUTH</p>
@@ -47,7 +47,6 @@
                                 {{ auth()->user()->name}}
                             </span>
                         </a>
-                        <a href="/" class="font-bold uppercase text-gray-600">Home</a>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit" class="font-bold uppercase text-gray-600">
@@ -58,7 +57,6 @@
                 @endauth
                 @guest
                     <nav class="flex gap-2 items-center">
-                        <a href="/" class="font-bold uppercase text-gray-600">Home</a>
                         <a href="{{ route('login') }}" class="font-bold uppercase text-gray-600">Login</a>
                         <a href="{{ route('register') }}" class="font-bold uppercase text-gray-600">Crear Cuenta</a>
                     </nav>    

@@ -18,7 +18,7 @@ class PostController extends Controller
     }
     public function index(User $user) { // Recibe un modelo porque en el ruteo estoy usando una variable (/{user:username})
         // Usando el usuario que viene por parámetro para consultar sus posts a través del modelo (Route Model Binding)
-        $posts = Post::where('user_id', $user->id)->paginate(20);
+        $posts = Post::where('user_id', $user->id)->latest()->paginate(20);
         // dd($posts);
         return view('layouts.dashboard', [
             'user' => $user, // Puedo mandar sólo el usuario que dentro tiene los posts, pero ni puedo hacer $user->posts->link() porque este objeto no es paginable

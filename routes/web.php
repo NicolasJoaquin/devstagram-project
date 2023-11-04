@@ -9,6 +9,7 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FollowerController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegisterController;
 
 /*
@@ -22,15 +23,18 @@ use App\Http\Controllers\RegisterController;
 |
 */
 /* Ruteo con clojures */
-Route::get('/', function () {
+// Route::get('/', function () {
     // return view('welcome');
-    return view('principal');
-});
+    // return view('principal');
+// });
 // Route::get('/crear-cuenta', function () {
 //     return view('auth.register');
 // });
 /* ################################################ */
 /* Ruteo con controllers */
+// Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', HomeController::class)->name('home'); // Con controller tipo __invoke
+
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store'])->name('register');
 
